@@ -78,9 +78,53 @@ int Print(int i);
 void Print(int i);
 //이름 매개변수는 같지만 반환값이 다르며 이 경우는 컴파일 에러가 발생함
 
+//재귀함수(Recursive Function)
+void ForLoop(int n)
+{
+	if (n < 0) //Base Case
+	{
+		std::cout << std::endl;
+		return;
+	}
+
+	std::cout << n << ",";
+	ForLoop(n - 1);
+}
+
+int Sum(int input[5], int start, int end)
+{
+	if (start == end)
+	{
+		return input[start];
+	}
+
+	return input[start] + Sum(input, start + 1, end);
+}
+
+int Factorial(int x) //팩토리얼
+{
+	if (x == 1)
+	{
+		return x;
+	}
+
+	return x * Factorial(x - 1);
+}
+
+int Fibonacci(int x) //피보나치
+{
+	if (x < 3)
+	{
+		return 1;
+	}
+
+	return Fibonacci(x - 1) + Fibonacci(x - 2);
+}
+
+
+
+
 //함수의 작동원리
-
-
 int main()
 {
 	PrintNumber(3); //함수를 호출하기 위해 호출하는 쪽(caller) 인자에 값을 주면 호출당하는쪽(callee)에 매개변수에 값이 복사되서 출력된다. 이러한 것을 Call by Value(값에 의한 호출)
@@ -97,6 +141,19 @@ int main()
 	
 	GetOrderNumber();
 	GetOrderNumber();
+	
+	//재귀함수
+	ForLoop(9);
+
+	int array[]{ 1,2,3,4,5 };
+
+	std::cout << Sum(array, 0, 4);
+
+	Factorial(5);
+	Fibonacci(3);
+	
+	
+	
 }
 
 int Num(int x)
