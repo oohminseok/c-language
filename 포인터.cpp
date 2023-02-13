@@ -2,71 +2,71 @@
 
 int main()
 {
-	//Æ÷ÀÎÅÍ(Pointer)
-	//Æ÷ÀÎÅÍ(Pointer)´Â ÄÄÇ»ÅÍ ¸Þ¸ð¸®ÀÇ ¾îµò°¡¸¦ °¡¸£Å°°í ÀÖ´Ù´Â ÀÇ¹Ì
-	//ÁÖ¼Ò¿¬»êÀÚ &, Æ÷ÀÎÅÍ¿¬»êÀÚ*
+	//í¬ì¸í„°(Pointer)
+	//í¬ì¸í„°(Pointer)ëŠ” ì»´í“¨í„° ë©”ëª¨ë¦¬ì˜ ì–´ë”˜ê°€ë¥¼ ê°€ë¥´í‚¤ê³  ìžˆë‹¤ëŠ” ì˜ë¯¸
+	//ì£¼ì†Œì—°ì‚°ìž &, í¬ì¸í„°ì—°ì‚°ìž*
 
 	int x{ 0 };
-	int* p; //p´Â Æ÷ÀÎÅÍÀÌ¸ç intÅ¸ÀÔÀ» °¡¸£Å²´Ù.
-	p = &x; //xÀÇ ÁÖ¼Ò¸¦ °¡¸£Å²´Ù.
-	std::cout << &x; //xÀÇ ÁÖ¼Ò°¡ ³ª¿Â´Ù.
-	std::cout << p; //¶È°°ÀÌ xÀÇ ÁÖ¼Ò°¡ ³ª¿Â´Ù.
-	std::cout << &p; //pÀÇ ÁÖ¼Ò°¡ ³ª¿Â´Ù.
+	int* p; //pëŠ” í¬ì¸í„°ì´ë©° intíƒ€ìž…ì„ ê°€ë¥´í‚¨ë‹¤.
+	p = &x; //xì˜ ì£¼ì†Œë¥¼ ê°€ë¥´í‚¨ë‹¤.
+	std::cout << &x; //xì˜ ì£¼ì†Œê°€ ë‚˜ì˜¨ë‹¤.
+	std::cout << p; //ë˜‘ê°™ì´ xì˜ ì£¼ì†Œê°€ ë‚˜ì˜¨ë‹¤.
+	std::cout << &p; //pì˜ ì£¼ì†Œê°€ ë‚˜ì˜¨ë‹¤.
 
 	int a{ 1 }, b{ 2 };
 	p = &a;
 	p = &b;
-	std::cout << *p << std::endl; //bÀÇ ÁÖ¼Ò¸¦ °¡¸£Å°°í ÀÖÀ¸¹Ç·Î bÀÇ °ª¿¡ Á¢±ÙÇÒ¼ö ÀÖ´Ù.
-	*p = 3; //bÀÇ °ª¿¡ Á¢±ÙÇØ¼­ 3ÀÌ¶õ °ªÀ¸·Î ¹Ù²Û´Ù.
+	std::cout << *p << std::endl; //bì˜ ì£¼ì†Œë¥¼ ê°€ë¥´í‚¤ê³  ìžˆìœ¼ë¯€ë¡œ bì˜ ê°’ì— ì ‘ê·¼í• ìˆ˜ ìžˆë‹¤.
+	*p = 3; //bì˜ ê°’ì— ì ‘ê·¼í•´ì„œ 3ì´ëž€ ê°’ìœ¼ë¡œ ë°”ê¾¼ë‹¤.
 
-	//Æ÷ÀÎÅÍ ¿¬»ê
+	//í¬ì¸í„° ì—°ì‚°
 
-	std::cout << p << std::endl; //°¡·É bÀÇ ÁÖ¼Ò°¡ 2000ÀÏ½Ã 2000ÀÇ ÁÖ¼Ò°¡ Ãâ·ÂµÈ´Ù.
-	std::cout << p + 1 << std::endl; //Å¸ÀÔÀÌ intÅ¸ÀÔÀÌ¸ç 4¹ÙÀÌÆ® Áõ°¡ÇÑ 2004ÀÇ ÁÖ¼Ò°¡ Ãâ·ÂµÈ´Ù. p=p+sizeof(int)*1°¡ µ¿ÀÏ
-	std::cout << p + 2 << std::endl;//Å¸ÀÔÀÌ intÅ¸ÀÔÀÌ¸ç 8¹ÙÀÌÆ® Áõ°¡ÇÑ 2008ÁÖ¼Ò°¡ Ãâ·ÂµÈ´Ù.  p=p+sizeof(int)*2°¡ µ¿ÀÏ
+	std::cout << p << std::endl; //ê°€ë ¹ bì˜ ì£¼ì†Œê°€ 2000ì¼ì‹œ 2000ì˜ ì£¼ì†Œê°€ ì¶œë ¥ëœë‹¤.
+	std::cout << p + 1 << std::endl; //íƒ€ìž…ì´ intíƒ€ìž…ì´ë©° 4ë°”ì´íŠ¸ ì¦ê°€í•œ 2004ì˜ ì£¼ì†Œê°€ ì¶œë ¥ëœë‹¤. p=p+sizeof(int)*1ê°€ ë™ì¼
+	std::cout << p + 2 << std::endl;//íƒ€ìž…ì´ intíƒ€ìž…ì´ë©° 8ë°”ì´íŠ¸ ì¦ê°€í•œ 2008ì£¼ì†Œê°€ ì¶œë ¥ëœë‹¤.  p=p+sizeof(int)*2ê°€ ë™ì¼
 
-	//Å¸ÀÔÀÌ ¾ø´Â Æ÷ÀÎÅÍ(Void Pointer)
-	//Void PointerÀÇ °æ¿ì Å¸ÀÔÀÌ ¾øÀ¸¹Ç·Î ¾Æ¹« Å¸ÀÔÀÌ³ª °¡¸£Å³¼ö ÀÖÁö¸¸ °ª¿¡ Á¢±ÙÀº ºÒ°¡´ÉÇÏ´Ù.
+	//íƒ€ìž…ì´ ì—†ëŠ” í¬ì¸í„°(Void Pointer)
+	//Void Pointerì˜ ê²½ìš° íƒ€ìž…ì´ ì—†ìœ¼ë¯€ë¡œ ì•„ë¬´ íƒ€ìž…ì´ë‚˜ ê°€ë¥´í‚¬ìˆ˜ ìžˆì§€ë§Œ ê°’ì— ì ‘ê·¼ì€ ë¶ˆê°€ëŠ¥í•˜ë‹¤.
 
 	int n{ 10 };
 	char c{ 'a' };
 	void* pointer;
-	//pointer = &n; //nÀÇ ÁÖ¼Ò¸¦ °¡¸£Å´
-	//pointer = &c; //cÀÇ ÁÖ¼Ò¸¦ °¡¸£Å´
-	//std::cout << *n; // nÀÇ °ª¿¡ Á¢±Ù ºÒ°¡
-	//pointer = pointer + 1; //Å¸ÀÔÀÌ ¾øÀ¸¹Ç·Î ¿¬»êÀÌ ºÒ°¡ÇÏ´Ù.
-	//std::cout << *(char*)p; //¸í½ÃÀûÀ¸·Î Çüº¯È¯À» ½ÃÄÑ P°¡ CÀÇ °ª¿¡ Á¢±ÙÇÒ¼ö ÀÖ°Ô ÇØÁÜ
+	pointer = &n; //nì˜ ì£¼ì†Œë¥¼ ê°€ë¥´í‚´
+	pointer = &c; //cì˜ ì£¼ì†Œë¥¼ ê°€ë¥´í‚´
+	std::cout << *n; // nì˜ ê°’ì— ì ‘ê·¼ ë¶ˆê°€
+	pointer = pointer + 1; //íƒ€ìž…ì´ ì—†ìœ¼ë¯€ë¡œ ì—°ì‚°ì´ ë¶ˆê°€í•˜ë‹¤.
+	std::cout << *(char*)p; //ëª…ì‹œì ìœ¼ë¡œ í˜•ë³€í™˜ì„ ì‹œì¼œ Pê°€ Cì˜ ê°’ì— ì ‘ê·¼í• ìˆ˜ ìžˆê²Œ í•´ì¤Œ
 	
 
 		int m{ 1025 };
-		int* pa = &m; //aÀÇ ÁÖ¼Ò¸¦ °¡¸£Å²´Ù. 
-		char* p0 = (char*)pa; //¸í½ÃÀû Çüº¯È¯À¸·Î p0°¡ paÀÇ ÁÖ¼Ò¸¦ °¡¸£Å³¼ö ÀÖ°Ô ÇØÁÜ
+		int* pa = &m; //aì˜ ì£¼ì†Œë¥¼ ê°€ë¥´í‚¨ë‹¤. 
+		char* p0 = (char*)pa; //ëª…ì‹œì  í˜•ë³€í™˜ìœ¼ë¡œ p0ê°€ paì˜ ì£¼ì†Œë¥¼ ê°€ë¥´í‚¬ìˆ˜ ìžˆê²Œ í•´ì¤Œ
 
 		for (int i = 0; i < 4; ++i)
 		{
-			std::cout << (void*)p0 << ":" << (int)*p0 << std::endl; //  mÀÇ ÁÖ¼Ò Ãâ·Â ¹× mÀÇ °ªÀº int->charÀ¸·Î Çüº¯È¯ µÇ¼­ 1025ÀÇ °ªÀÌ 1Ãâ·ÂÈÄ ±×´ÙÀ½ ÁÖ¼Ò·Î ³Ñ¾î°¡¹Ç·Î 4°¡ Ãâ·ÂµÈ´Ù. 
-			p0++; //p0´Â charÅ¸ÀÔ 1¹ÙÀÌÆ®¹Ç·Î ÁÖ¼Ò°¡ 1¾¿Áõ°¡
+			std::cout << (void*)p0 << ":" << (int)*p0 << std::endl; //  mì˜ ì£¼ì†Œ ì¶œë ¥ ë° mì˜ ê°’ì€ int->charìœ¼ë¡œ í˜•ë³€í™˜ ë˜ì„œ 1025ì˜ ê°’ì´ 1ì¶œë ¥í›„ ê·¸ë‹¤ìŒ ì£¼ì†Œë¡œ ë„˜ì–´ê°€ë¯€ë¡œ 4ê°€ ì¶œë ¥ëœë‹¤. 
+			p0++; //p0ëŠ” charíƒ€ìž… 1ë°”ì´íŠ¸ë¯€ë¡œ ì£¼ì†Œê°€ 1ì”©ì¦ê°€
 		}
-		 // ¸Þ¸ð¸® ÁÖ¼Ò      : °ª : BIN(8bit) : HEX(1bye)
+		 // ë©”ëª¨ë¦¬ ì£¼ì†Œ      : ê°’ : BIN(8bit) : HEX(1bye)
 		 // 000000B2A911FAF4 : 1  : 0000 0001 : 01
 		 //	000000B2A911FAF5 : 4  : 0000 0100 : 04
 		 //	000000B2A911FAF6 : 0  : 0000 0000 : 00
 		 //	000000B2A911FAF7 : 0  : 0000 0000 : 00
 		 
-		 //1025 = 00000000 00000000 00000100 00000001(2Áø¼ö)
+		 //1025 = 00000000 00000000 00000100 00000001(2ì§„ìˆ˜)
 		     // =    00       00       04       01
-		 //Endian ÀÌ¶ó´Â Æ¯¼º‹ª¿¡ °ªÀÌ ¸Þ¸ð¸®¿¡ °Å²Ù·Î ÀúÀåµÊ
+		 //Endian ì´ë¼ëŠ” íŠ¹ì„±ìœ¼ë¡œ ê°’ì´ ë©”ëª¨ë¦¬ì— ê±°ê¾¸ë¡œ ì €ìž¥ë¨
 
-		//Æ÷ÀÎÅÍÀÇ Æ÷ÀÎÅÍ
+		//í¬ì¸í„°ì˜ í¬ì¸í„°
 		int q{ 10 };
 		int* w = &q;
-		int** r = &w; //q¸¦ °¡¸£Å°´Â wÀÇ ÁÖ¼Ò¸¦ °¡¸£Å²´Ù.
+		int** r = &w; //që¥¼ ê°€ë¥´í‚¤ëŠ” wì˜ ì£¼ì†Œë¥¼ ê°€ë¥´í‚¨ë‹¤.
 
-		std::cout << q << std::endl; //qÀÇ °ªÀÌ Ãâ·Â
-		std::cout << *w << std::endl; //w°¡ °¡¸£Å°´Â qÀÇ ÁÖ¼Ò Ãâ·Â
-		std::cout << *(*r) << std::endl; //rÀÌ °¡¸£Å°´Â wÀÇ ÁÖ¼Ò ¸Þ¸ð¸®¿¡ ÀúÀåµÈ qÀÇ ÁÖ¼Ò¾È¿¡ °ªÀÌ Ãâ·Â
+		std::cout << q << std::endl; //qì˜ ê°’ì´ ì¶œë ¥
+		std::cout << *w << std::endl; //wê°€ ê°€ë¥´í‚¤ëŠ” qì˜ ì£¼ì†Œ ì¶œë ¥
+		std::cout << *(*r) << std::endl; //rì´ ê°€ë¥´í‚¤ëŠ” wì˜ ì£¼ì†Œ ë©”ëª¨ë¦¬ì— ì €ìž¥ëœ qì˜ ì£¼ì†Œì•ˆì— ê°’ì´ ì¶œë ¥
 
-		//±¸Á¶Ã¼¿Í Æ÷ÀÎÅÍ
+		//êµ¬ì¡°ì²´ì™€ í¬ì¸í„°
 
 		struct Status
 		{
@@ -75,24 +75,24 @@ int main()
 		};
 		Status myStatus{ 100,10 };
 		Status* pStatus = &myStatus;
-		std::cout << pStatus->HP << std::endl; //±¸Á¶Ã¼ÀÇ Æ÷ÀÎÅÍ°¡ °¡¸£Å°´Â °ª¿¡ Á¢±ÙÇÒ‹š ->Ç¥½Ã
+		std::cout << pStatus->HP << std::endl; //êµ¬ì¡°ì²´ì˜ í¬ì¸í„°ê°€ ê°€ë¥´í‚¤ëŠ” ê°’ì— ì ‘ê·¼í• Â‹Âš ->í‘œì‹œ
 
-		//const¿Í Æ÷ÀÎÅÍ
+		//constì™€ í¬ì¸í„°
 		const int myPrecious = 10;
-		int* ptr = &myPrecious; //const int Å¸ÀÔÀ» °¡¸£ÄÑ¾ß ÇÏ³ª intÅ¸ÀÔÀÇ Æ÷ÀÎÅÍ ÀÌ¹Ç·Î ÄÄÆÄÀÏ ¿À·ù°¡ ³­´Ù.
+		int* ptr = &myPrecious; //const int íƒ€ìž…ì„ ê°€ë¥´ì¼œì•¼ í•˜ë‚˜ intíƒ€ìž…ì˜ í¬ì¸í„° ì´ë¯€ë¡œ ì»´íŒŒì¼ ì˜¤ë¥˜ê°€ ë‚œë‹¤.
 
 		const int x{ 10 }, y{ 20 };
 		const int* tr;
 		tr = &x;
 		tr = &y;
-		*tr = 1; //»ó¼öÀÌ¹Ç·Î °ª º¯°æ ºÒ°¡ÇÏ´Ù.
+		*tr = 1; //ìƒìˆ˜ì´ë¯€ë¡œ ê°’ ë³€ê²½ ë¶ˆê°€í•˜ë‹¤.
 
 		int n{ 10 }, m{ 20 };
 		int* const tr2{ &n };
-		tr = &y;//»ó¼ö Æ÷ÀÎÅÍÀÌ¹Ç·Î °¡¸£Å°´Â ´ë»óÀ» ¼öÁ¤ÇÒ¼ö ¾ø´Ù.
-		*tr2 = 20; //int°¡ »ó¼ö°¡ ¾Æ´Ï¹Ç·Î °ªÀ» ¼öÁ¤ÇÒ¼ö ÀÖ´Ù.
+		tr = &y;//ìƒìˆ˜ í¬ì¸í„°ì´ë¯€ë¡œ ê°€ë¥´í‚¤ëŠ” ëŒ€ìƒì„ ìˆ˜ì •í• ìˆ˜ ì—†ë‹¤.
+		*tr2 = 20; //intê°€ ìƒìˆ˜ê°€ ì•„ë‹ˆë¯€ë¡œ ê°’ì„ ìˆ˜ì •í• ìˆ˜ ìžˆë‹¤.
 
-		const int* const tr3 = &x; //tr3 »ó¼ö Æ÷ÀÎÅÍÀÌ¸ç const intÅ¸ÀÔÀ» °¡¸£Å²´Ù.
-		tr3 = &y; // »ó¼ö Æ÷ÀÎÅÍÀÌ¹Ç·Î ´Ù¸¥ ÁÖ¼Ò¸¦ °¡¸£Å³¼ö ¾ø´Ù.
-		*tr3 = 25; // tr3ÀÌ »ó¼ö¸¦ °¡¸£Å°¹Ç·Î °ªÀ» ¼öÁ¤ÇÒ¼ö ¾ø´Ù.
+		const int* const tr3 = &x; //tr3 ìƒìˆ˜ í¬ì¸í„°ì´ë©° const intíƒ€ìž…ì„ ê°€ë¥´í‚¨ë‹¤.
+		tr3 = &y; // ìƒìˆ˜ í¬ì¸í„°ì´ë¯€ë¡œ ë‹¤ë¥¸ ì£¼ì†Œë¥¼ ê°€ë¥´í‚¬ìˆ˜ ì—†ë‹¤.
+		*tr3 = 25; // tr3ì´ ìƒìˆ˜ë¥¼ ê°€ë¥´í‚¤ë¯€ë¡œ ê°’ì„ ìˆ˜ì •í• ìˆ˜ ì—†ë‹¤.
 }
