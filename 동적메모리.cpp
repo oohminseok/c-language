@@ -43,5 +43,23 @@ int main()
 	//동적으로 할당하고 해제하지 않으면 메모리 누수 발생 
 
 	//동적 2차배열
+	
+	int** arrays = new int* [2]; //동적으로  2차배열을 생성한다음 주소를 가르키고 있음
+
+	for (int i = 0; i < 2; ++i)
+	{
+		arrays[i] = new int[3]; 
+	}
+
+	arrays[0][0] = 1;
+	arrays[0][1] = 2;
+	arrays[0][2] = 3;
+
+	arrays[1][0] = 1;
+	arrays[1][1] = 2;
+	arrays[1][2] = 3;
+
+	delete[] arrays;
+	arrays = nullptr;
 
 }
