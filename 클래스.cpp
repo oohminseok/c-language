@@ -111,6 +111,85 @@ int main()
     myDog.mAge = 10;
     myDog.Bark();
 
+     //클래스#2
+    //생성자(constructor)
+    //클래스의 객체가 인스턴스화될 때 자동적으로 호출되는 특별한 멤버함수 생성자
+    //1.클래스와 동일한 이름이어야 한다.
+    //2.반환 타입이 없다.
+
+    class MyClass
+    {
+    public:
+        MyClass() //생성자
+        {
+            std::cout << "[Constructor]" << std::endl; 
+        }
+    };
+
+    //기본 생성자(Default Constructor)
+    //기본 생성자는 매개변수가 없는 생성자의 형태로 멤버들을 기본값으로 초기화하는 생성자
+    class Quest
+    {
+    private:
+        int mID;
+        int mExp;
+
+    public:
+        Quest()
+        {
+            mID = 1;
+        }
+
+        void Print()
+        {
+            std::cout << "QuestID:" << mID << std::endl;
+            std::cout << "EXP:" << mExp << std::endl;
+        }
+    };
+
+    Quest q1;
+
+    //생성자의 형태
+    //매개변수가 다른 동일한 생성자도 여러개 만들수 있다
+    class Quest
+    {
+    private:
+        int mID;
+        int mExp;
+
+    public:
+        Quest()
+        {
+            mID = 1;
+        }
+        Quest(int id, int exp = 1)
+        {
+            mID = id;
+            mExp = exp;
+        }
+
+        void Print()
+        {
+            std::cout << "QuestID:" << mID << std::endl;
+            std::cout << "EXP:" << mExp << std::endl;
+        }
+    };
+    
+    Quest q2(2, 100);
+
+    //초기화 방식
+    //정수형의 경우
+    int a = 2; //복사 초기화(copy initialization) 배정문을 통해 값을 대입하는 방식
+    int b(2); //직접 초기화(direct initialization) 함수 형태로 초기화를 수행하는 것으로 생성자와 같은 방식
+    int c{ 2 }; //유니폼 초기화(uniform initialization) 형변환이 허용되지 않고 안전하며 빠르다
+    int d = { 2 }; //유니폼 복사 초기화(uniform initialization) //유니폼 초기화로 객체를 생성한후 복사하는 방식
+ 
+    //클래스의 경우
+    Quest q1 = Quest(); //복사 초기화(copy initialization) 새로 객체를 만들어 배정한다.
+    Quest q2(2); //직접 초기화(direct initialization) 생성자를 직접 호출하여 초기화
+    MyClass c3{ 2,1.0f }; //유니폼 초기화(uniform initialization) public변수들을 초기화하는 유니폼 초기화
+    MyClass c4 = { 2,1.0f }; //유니폼 복사 초기화(uniform initialization) 유니폼 초기화로 객체를 생성한후 복사하는 방식
+    
 }
 
 
