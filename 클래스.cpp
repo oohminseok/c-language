@@ -190,6 +190,79 @@ int main()
     MyClass c3{ 2,1.0f }; //유니폼 초기화(uniform initialization) public변수들을 초기화하는 유니폼 초기화
     MyClass c4 = { 2,1.0f }; //유니폼 복사 초기화(uniform initialization) 유니폼 초기화로 객체를 생성한후 복사하는 방식
     
+    //멤버 초기화 리스트
+    //<생성자>:<초기화식1>,<초기화식2>,<초기화식3>...
+    class Quest
+    {
+    private:
+        int mID;
+        int mExp;
+
+    public:
+        Quest(int id, int exp = 1) : mID{ id }, mExp{ exp } //유니폼 초기화
+        {
+
+        }
+        Quest(int id, int exp = 1) : mID(id), mExp(exp) //복사 초기화
+        {
+
+        }
+    };
+
+    //대리 생성자(Delegating Constructor)
+    class Quest
+    {
+    private:
+        int mID;
+        int mExp;
+
+    public:
+        Quest():mID{1},mExp{1}
+        {
+            //1:기본 퀘스트 초기화
+        }
+        Quest(std::string excel) : Quest{} //대리생성자
+        {
+            //2:엑셀에서 퀘스트 정보 가져온 후
+        }
+    };
+
+    Quest q1 = Quest("1.xlsx");
+    q1.Print();
+
+    //위 코드는 다음과 같은 과정을 거친다.
+    //1. Quest q1 = Quest("1.xlsx"); 인스턴스화
+    //2.Quest(std::string)생성자
+    //a.Quest()생성자
+    // 1.멤버 초기화식
+    // 2.기본 퀘스트 초기화
+    //b.엑셀에서 퀘스트 정보 읽기
+
+    //소멸자(Destructor)
+    //소멸자는 생성자와 마찬가지로 특별한 멤버 함수로 객체의 소멸에 자동적으로 사용되는 기능
+
+    class MyArray
+    {
+    private:
+        int mLength;
+        int* mArray;
+
+    public:
+        MyArray(int length) : mLength{ length }
+        {
+            mArray = new int[length] {};
+        }
+        ~MyArray()
+        {
+            delete[] mArray;
+        }
+    };
+
+
+    MyArray Array{ 10 };
+    // 위에서 소멸자가 없다면 인스턴스화할떄 동적할당한 int 10개는 유지되므로 메모리 누수가 발생
+    
+    
 }
 
 
