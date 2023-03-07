@@ -262,7 +262,149 @@ int main()
     MyArray Array{ 10 };
     // 위에서 소멸자가 없다면 인스턴스화할떄 동적할당한 int 10개는 유지되므로 메모리 누수가 발생
     
+    //클래스 #3
+    //상수 클래스(Const Class)
+    class Myclass
+    {
+    public:
+        int mValue1;
+        int mValue2;
+
+        MyClass():MyClass(1, 1)
+        {
+
+        }
+
+        MyClass(int v1, int v2) :mValue1{ v1 }, mValue2{ v2 }
+        {
+
+        }
+
+        void SetValue1(int x)
+        {
+            mValue1 = x;
+        }
+
+        void DoNothing()
+        {
+
+        }
+    };
+
+    const MyClass c1; //기본 생성자로 초기화한 상수 객체
+    const MyClass c2(2, 2);  //매개변수 2개인 생성자로 초기화한 상수 객체
+    const MyClass c3{ 3,3 }; //유니폼 초기화를 사용한 상수 객체
+
+    c1.mVaue1 = 10; //상수라서 멤버변수값을 수정할수 없으며 에러이다.
+    c2.SetValue1(10); //상수라서 매개변수를 주면 멤버변수 값이 변경되므로 에러이다.
+
+    //정적 멤버(static member)
+    //클래스 내부에서만 존재해서 클래스 변수(class variable)라고도 표현한다
+    //클래스 종속이라 this포인터가 넘어가지 않는다.
+    class MyClass
+    {
+    public:
+        static int mValue; //선언
+    };
+
+    int MyClass::mValue{ 1 };//정의
+
+    //정적멤버 변수의 활용 예시
     
+    class MyClass
+    {
+    public:
+        static int sCount; 
+
+        MyClass()
+        {
+            sCount++;
+        }
+        ~MyClass()
+        {
+            sCount--;
+        }
+    };
+
+    int MyClass::sCount{ 0 };
+
+    MyClass c1; //객체가 생성되서 생성자를 통해 스태틱 변수 값 증가
+    MyClass c2;
+    MyClass c3; 
+
+    std::cout << c3.sCount << std::endl; //
+    std::cout << MyClass::sCount << std::endl;
+
+    //정적멤버 변수의 활용 예시
+    class MyIDGenerator
+    {
+    public:
+        static int sID;
+
+        static int CreateNewID()
+        {
+            return ++sID;
+        }
+    };
+
+    int MyIDGenerator::sID{ 0 };
+
+    std::cout << MyIDGenerator::CreateNewID() << std::endl; //객체가 생성되서 생성자를 통해 스태틱 변수 값 증가
+    std::cout << MyIDGenerator::CreateNewID() << std::endl;
+    std::cout << MyIDGenerator::CreateNewID() << std::endl;
+
+    //친구(friend)
+    //친구 클래스
+    //친구인 클래스는 private,protected 멤버에 까지 접근이 가능하다
+
+    class Sword
+    {
+        friend class Warrior; //warrior를 sword의 친구로 지정
+    private:
+        int mAttackDamage;
+        
+    public:
+        Sword(int damage):mAttackDamage{damage}
+    };
+
+    class Warrior
+    {
+    public:
+        void AttackWith(Sword& sword)
+        {
+            std::cout << "칼을 휘둘러" << sword.mAttackDamage //warrior를 친구로 지정했으므로 sword의 private 멤버변수 접근가능
+                << "만큼 피해를 주었다!" << std::endl;
+        }
+    };
+
+    Sword shorSword{ 10 };
+    Warrior w;
+
+    w.AttackWith(shorSword);
+
+    //친구 함수
+    class Sword
+    {
+    private:
+        int mAttackDamage;
+
+    public:
+        Sword(int damage) :mAttackDamage{ damage }
+        {
+
+        }
+        friend void DamageBuff(Sword& sword) //멤버함수처럼 보이지만 전역함수이다.
+        {
+            int oldDamage = sword.mAttackDamage;
+            sword.mAttackDamage = oldDamage * 2;
+
+            std::cout << "검을 강화했다" << oldDamage
+                << "->" << sword.mAttackDamage << std::endl;
+        }
+    };
+
+    Sword shortSword(10);
+    DamageBuff(shorSword);
 }
 
 
