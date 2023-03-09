@@ -405,6 +405,103 @@ int main()
 
     Sword shortSword(10);
     DamageBuff(shorSword);
+    
+    //친구멤버함수
+    //전방선언 및 정의 분리하여 친구라는 것을 확인해서 사용해야된다.
+    class Sword;
+    
+    class Warrior
+    {
+    public:
+        void AttackWith(Sword& sword);
+    };
+
+    class Sword
+    {
+    private:
+        int attackDamage;
+
+    public:
+        Sword(int damage) : attackDamage{ damage }
+        {
+
+        }
+
+        friend void Warrior::AttackWith(Sword& sword)
+        {
+            std::cout << "칼을 휘둘러" << sword.attackDamage
+                << "만큼 피해를 주었다!" << std::endl;
+        }
+    };
+
+
+    //연산자 오버로딩
+    //일반 함수형태
+    class Point2D
+    {
+    private:
+        int mX{};
+        int mY{};
+
+    public:
+        Point2D() = default;
+        Point2D(int x, int y) :mX{ x }, mY{ y }
+        {
+
+        }
+
+        void Print()
+        {
+            std::cout << "(" << mX << "," << mY << ")" << std::endl;
+        }
+
+        friend Point2D operator+(Point2D& x, Point2D& y);
+    };
+
+    Point2D operator+(Point2D& x, Point2D& y)
+    {
+        Point2D newPt{ 0,0 };
+
+        newPt.mX = x.mX + y.mX;
+        newPt.mY = x.mY + y.mY;
+
+        return newPt;
+    }
+   
+    Point2D pt1{ 2,3 };
+    Point2D pt2{ 3,4 };
+    Point2D pt3{};
+    Point2D pt4{};
+
+    pt3 = pt1 + pt2; 
+    pt3.Print();
+
+    pt4 = (pt1 + pt2) + pt3; // 에러발생 pt3의 값에 들어간 우측값이 무명객체이므로 const 참조형을 사용해야만 한다.
+    
+    //멤버 함수형태
+    class Point2D
+    {
+    private:
+        int mX{};
+        int mY{};
+
+    public:
+        Point2D() = default;
+        Point2D(int x, int y) :mX{ x }, mY{ y }
+        {
+
+        }
+
+        void Print()
+        {
+            std::cout << "(" << mX << "," << mY << ")" << std::endl;
+        }
+
+        Point2D operator+(const Point2D& point);
+        {
+            return Point2D(mX + point.mX, mY + point.mY);
+        };
+    
 }
 
 
