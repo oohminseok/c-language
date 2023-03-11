@@ -476,7 +476,7 @@ int main()
     pt3 = pt1 + pt2; 
     pt3.Print();
 
-    pt4 = (pt1 + pt2) + pt3; // 에러발생 pt3의 값에 들어간 우측값이 무명객체이므로 const 참조형을 사용해야만 한다.
+    pt4 = (pt1 + pt2) + pt3; // 에러발생 pt1+pt2의 값이 무명객체이므로 const 참조형을 사용해야만 한다.
     
     //멤버 함수형태
     class Point2D
@@ -497,10 +497,70 @@ int main()
             std::cout << "(" << mX << "," << mY << ")" << std::endl;
         }
 
-        Point2D operator+(const Point2D& point);
+       Point2D operator+(const Point2D& point); //+연산자
         {
             return Point2D(mX + point.mX, mY + point.mY);
         };
+        Point2D operator++() //전위 연산자
+        {
+            Point2D temp(mX, mY);
+            ++(*this);
+
+            return temp;
+        }
+
+        Point2D operator++(int) //후위 연산자
+        {
+            ++mX;
+            ++mY;
+
+            return *this;
+        }
+    }
+    class MyArray
+    {
+    private:
+        int mArray[10];
+
+    public:
+        MyArray() :mArray{}
+        {
+
+        }
+
+        int& operator[](int index) //첨자 연산자
+        {
+            return mArray[index];
+        }
+    }
+    MyArray array1;
+
+    array1[0] = 1;
+
+    std::cout << array1[0] << std::endl;
+    std::cout << array1[1] << std::endl;
+
+    //스트림 삽입 연산자
+
+    std::cout << pt;
+    std::cout.operator<<(pt);//이 형태에서 <<는 좌측 cout개체의 멤버 함수로 만들수 있지만 cout를 수정할수 없다.
+
+
+    //얕은 복사
+    //얕은 복사(swallow copy)는 주어진 객체의 각 멤버 변수를 새 객체의 멤버 변수에 배정
+
+    class DogHouse
+    {
+        Dog* owner;
+    }
+
+    DogHouse house1;
+    DogHouse house2(house1);
+    //포인터 변수에 얕은 복사를 사용하여 값을 복사하면 동일한 heap를 가르키는 포인터 변수가 된다.
+    //만약 house1이 소멸되고 house2.onwer에 접근하면 심각한 오류 발생
+
+    //깊은 복사(deep copy)
+    //새로운 메모리를 할당해서 얕은 복사의 소유권 문제를 해결할수 있다.
     
 }
 
