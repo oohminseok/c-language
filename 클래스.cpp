@@ -562,6 +562,133 @@ int main()
     //깊은 복사(deep copy)
     //새로운 메모리를 할당해서 얕은 복사의 소유권 문제를 해결할수 있다.
     
+    
+    
+    //클래스-상속과 다형성
+    //파생 구문
+    //class 파생클래스:[virtual][접근제한자]기반클래스,...
+
+    //1.class 파생클래스:기반클래스
+    //기본 표기법 만약 Animal을 기반으로 Dog를 파생하려면 다음과 같이 표현한다.
+    class Dog :Animal;
+
+    //2.[virtual]
+    //[]는 생략이 가능하며 virtual은 가상 상속 개념이다.
+
+    //3.[접근제한자]
+    //기반 클래스의 멤버를 상속 받는 범위를 지정하는데, private는 접근불가이다.
+
+    class Developer
+    {
+    public:
+        std::string mName;
+        int mAge;
+    };
+
+    class Programmer :public Developer
+    {
+    public:
+        void Coding();
+        void Debugging();
+    };
+
+    class Designer :public Developer
+    {
+    public:
+        void Documentation();
+        void Presentation();
+    };
+   
+    class ChiefProgrammer :public Programmer
+    {
+    public:
+        void Architecture();
+        void Scheduling();
+    };
+   
+    class Animal
+    {
+    protected:
+        int mAge;
+        int mWeight;
+
+    public:
+        Animal():mAge{1},mWeight{1}
+        {
+
+        }
+        ~Animal()
+        {
+
+        }
+
+        int GetAge() const
+        {
+            return mAge;
+        }
+        void SetAge(int age)
+        {
+            mAge = age;
+        }
+        int GetWeight() const
+        {
+            return mWeight;
+        }
+        void SetWeight(int weight)
+        {
+            mWeight = weight;
+        }
+
+        void Sound()
+        {
+            std::cout << "Make a noise..." << std::endl;
+        }
+    };
+
+    class Dog :public Animal
+    {
+    public:
+        enum BREED
+        {
+            BEAGE,
+            DOBERMAN,
+            BERNARD,
+            CHIHUAHUA,
+            HUSKY,
+            RETRIEVER
+        };
+
+    private:
+        BREED mBreed;
+
+    public:
+        Dog():mBreed{BREED::RETRIEVER}
+        {
+
+        }
+        ~Dog();
+
+        Dog::BREED GetBreed()const
+        {
+            return mBreed;
+        }
+
+        void SetBreed(Dog::BREED breed)
+        {
+            mBreed = breed;
+        }
+
+        void Roll()
+        {
+            std::cout << "Rolling..." << std::endl;
+        }
+    };
+
+    Dog john; //Dog 타입의 존이라는 객체 생성
+
+    john.Sound(); //sound는 부모의 특징이지만 상속을 받았으므로 사용가능
+    john.Roll();// roll은 자기자신의 특징이므로 당연히 사용가능
+    
 }
 
 
