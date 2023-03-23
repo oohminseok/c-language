@@ -689,6 +689,60 @@ int main()
     john.Sound(); //sound는 부모의 특징이지만 상속을 받았으므로 사용가능
     john.Roll();// roll은 자기자신의 특징이므로 당연히 사용가능
     
+     //파생관계에서의 생성자와 소멸자
+    //부모가 먼저 만들어지고 그다음 자식이 만들어지며 소멸될때는 자식먼저 그 다음 부모가 소멸된다.
+
+    //멤버함수 오버라이딩(overriding)
+    //부모클래스의 함수를 자식이 재정의 하는것
+    //예시
+
+    class Character
+    {
+        virtual void Attack();
+    };
+
+    class Warrior :public Character
+    {
+        void Attack()
+        {
+            std::cout << "칼을 휘둘렀다";
+        }
+    };
+
+    class Archer :public Character
+    {
+        void Attack()
+        {
+            std::cout << "화살을 쐈다";
+        }
+    };
+
+    //이른 바인딩(early binding)vs늦은 바인딩(late binding)
+    //바인딩은 프로그램에서 사용하는 변수/함수등의 이름을 값으로 연결해 주는 과정을 말한다.
+
+    int a = 10;
+    //정수형 변수 공간에 a라고 이름을 붙여주는 바인딩의 예시 이 경우 빠르게 바인딩이 발생
+
+    p->vfunc();
+    //가상함수 호출은 늦은 시간에 바인딩이 발생, p의 객체가 실제로 무엇인지 알아야 하기 떄문이다.
+
+    class Character
+    {
+       
+    };
+
+    class Warrior :public Character
+    {
+        
+    };
+    
+    //warrior의 인스턴스를 만들떄는 character생성자가 먼저 호출되고 그 다음 warrior 생성자가 호출되어 만들어진다.
+    //이 중에서 character를 생성하려고 봤을떄 가상함수가 들어있으면
+    //이 함수는 아직 누가 대상인지 모르기 떄문에 별도의 가상함수 테이블(virtual function table)에 옮겨둔다
+    //그리고 인스턴스에 가상함수 테이블을 가르키는 포인터(vptr)을 만들어 연결해둔다.
+    //다음으로 warrior 생성자가 호출되면 이제 가상함수 테이블은 객체가 어떤 타입인지 알수 있으니 Warrior의 함수에 연결해 준다.
+    
+    
 }
 
 
